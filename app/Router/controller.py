@@ -6,7 +6,7 @@ from app.Database import repository
 
 bp = Blueprint('controllers', __name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-logger = logging.getLogger('flask.app')
+logger = logging.getLogger('INFO')
 
 
 @bp.route("/ping", methods=["GET"])
