@@ -1,11 +1,13 @@
 import sys
 import logging
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from app.Database import repository
 
-bp = Blueprint('controller', __name__)
+
+bp = Blueprint('controllers', __name__)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging.getLogger('flask.app')
+
 
 @bp.route("/ping", methods=["GET"])
 def ping():
@@ -20,7 +22,7 @@ def get_all_images():
     all_file_list = repository.get_all_files()
     logger.info(f"All files >> {all_file_list}")
 
-    return "", 200
+    return data, 200
 
 @bp.route("/get-image", methods=["GET"])
 def get_image_download():
