@@ -1,6 +1,6 @@
 FROM python:3.10.14
 
-RUN pip3 install poetry
+RUN python -m pip install --upgrade pip && pip3 install poetry
 
 WORKDIR /app
 
