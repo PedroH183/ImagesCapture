@@ -22,6 +22,9 @@ class PostgresPool(SingletonInterface):
     def get_conn(self):
         return self.postgres_pool.getconn()
 
+    def put_conn(self, conn):
+        self.pool.putconn(conn)
+
 
 def db_operator(function):
     @wraps(function)
@@ -40,6 +43,7 @@ def db_operator(function):
             print(f"Error ao executar uma função no banco :: {str(e)}")
         finally:
             if conn:
-                print(f"Termino de execução de operação no banco")
+                PostgresPool().put_conn(conn)
+            print(f"Termino de execução de operação no banco")
 
     return wrapper
