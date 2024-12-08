@@ -1,17 +1,8 @@
 version: '3.10'
 
 services:
-  api:
-    build:
-      context: .
-      dockerfile: dockerfile
-    depends_on:
-      - db
-    ports:
-      - "5000:5000"
-
-  # por enquanto não é necessário
   db:
+    container_name: web_database
     image: postgres:15
     environment:
       POSTGRES_USER: postgres
@@ -21,3 +12,23 @@ services:
       - ./Database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
+
+  api:
+    container_name: web_api
+    build: 
+      context: ./api_srvc
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+
+  image_capture:
+    container_name: images_capture_srvc
+    build:
+      context: ./images_capture_srvc
+    depends_on:
+      - db
+    ports:
+      - "7002:7007"
+    volumes:
+      - "./images:/images/"
