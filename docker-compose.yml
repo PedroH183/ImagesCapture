@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: imagecapturedb
     volumes:
-      - ./Database:/docker-entrypoint-initdb.d
+      - ./database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
 
@@ -31,4 +31,4 @@ services:
     ports:
       - "7002:7007"
     volumes:
-      - "./images:/images/"
+      - "./images_capture_srvc/images:/images/"
