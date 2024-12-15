@@ -36,8 +36,6 @@ try:
 except FileExistsError:
     pass
 
-time.sleep(5)
-
 list_products_founded =  driver.find_elements(
     By.CLASS_NAME, "ui-search-result__wrapper"
 )
