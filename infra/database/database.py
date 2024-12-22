@@ -1,7 +1,7 @@
 from functools import wraps
+from psycopg2 import connect
 from psycopg2.extensions import connection
-from psycopg2.pool import SimpleConnectionPool
-from SingletonInterface import SingletonInterface
+from utils.Singleton import SingletonInterface
 
 # System debug
 import sys
@@ -11,10 +11,12 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging.getLogger('INFO')
 
 
-class PostgresPool(SingletonInterface):
+class PostgreConn:
     """
         A Pool of connection to paralel database access
     """
+
+    __metaclass__ = SingletonInterface
 
     params = {
         "port" : "5432",
@@ -25,19 +27,10 @@ class PostgresPool(SingletonInterface):
     }
 
     def __init__(self):
-        self.postgres_pool: SimpleConnectionPool = SimpleConnectionPool(1,5, **self.params)
+        self.connection: connection = connect(**self.params)
 
     def get_conn(self):
-        logger.info("[INFO] ::: TAKING A CONNECTION FROM POOL")
-        return self.postgres_pool.getconn()
-
-    def put_conn(self, conn):
-        logger.info("[INFO] ::: RETURNS A CONN TO POOL")
-        self.postgres_pool.putconn(conn)
-
-    def close_all_connection(self) -> None:
-        logger.info("[INFO] ::: CLOSING ALL CONNECTIONS")
-        self.postgres_pool.closeall()
+        return self.connection.getconn()
 
 
 def db_operator(function):
@@ -46,14 +39,12 @@ def db_operator(function):
 
         conn : connection = None
         try:
-            conn = PostgresPool().get_conn()
+            conn = PostgreConn().connection
             return function(conn, *args, **kwargs)
 
         except Exception as e:
             logger.info(f"Error ao executar uma função no banco :: {str(e)}")
         finally:
-            if conn:
-                PostgresPool().put_conn(conn)
             logger.info(f"Termino de execução de operação no banco")
 
     return wrapper

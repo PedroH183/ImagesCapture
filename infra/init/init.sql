@@ -1,0 +1,16 @@
+CREATE TABLE files(
+    id SERIAL PRIMARY KEY,
+    path VARCHAR(255) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    site_origin VARCHAR(255) NOT NULL,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE products_captured(
+    id SERIAL PRIMARY KEY,
+    product_title VARCHAR(255),
+    product_link_image VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
