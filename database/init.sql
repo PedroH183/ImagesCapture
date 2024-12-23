@@ -1,7 +1,0 @@
-CREATE TABLE files(
-    id SERIAL PRIMARY KEY,
-    path VARCHAR(255) NOT NULL,
-    filename VARCHAR(255) NOT NULL,
-    site_origin VARCHAR(255) NOT NULL,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
