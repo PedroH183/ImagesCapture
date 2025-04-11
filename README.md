@@ -6,7 +6,7 @@ A web scraping application that captures product information from Mercado Livre,
 
 This project uses Selenium to scrape product information from Mercado Livre (specifically searching for "Acer Predator" products by default). 
 
-## 🚀 Features
+## Features
 
 - Automated web scraping using Selenium with headless Chrome
 - PostgreSQL database integration for data storage
@@ -14,7 +14,7 @@ This project uses Selenium to scrape product information from Mercado Livre (spe
 - Containerized setup with Docker and Docker Compose
 - Dependency injection pattern for better code organization
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Python 3.10+**
 - **Selenium**: Web automation and scraping
@@ -23,7 +23,7 @@ This project uses Selenium to scrape product information from Mercado Livre (spe
 - **Python Telegram Bot**: Telegram integration
 - **psycopg2**: PostgreSQL adapter for Python
 
-## 🔧 Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 
@@ -47,7 +47,7 @@ TELEGRAM_CHAT_ID=your_telegram_chat_id
    docker-compose up -d
    ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ImagesCapture/
