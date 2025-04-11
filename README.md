@@ -23,24 +23,7 @@ This project uses Selenium to scrape product information from Mercado Livre (spe
 - **Python Telegram Bot**: Telegram integration
 - **psycopg2**: PostgreSQL adapter for Python
 
-## Setup & Installation
-
-### Prerequisites
-
-- Docker and Docker Compose
-- Python 3.10+
-- Chrome/Chromium and ChromeDriver
-
-### Environment Configuration
-
-Create a `config.env` file in the root directory with the following variables:
-
-```
-TELEGRAM_TOKEN=your_telegram_bot_token
-TELEGRAM_CHAT_ID=your_telegram_chat_id
-```
-
-### Running with Docker
+## Running
 
 1. Build and start the containers:
    ```bash
